@@ -88,6 +88,26 @@ values = data['value']
 num_accommodations = len(accommodation_labels)
 num_periods = len(time_labels)
 
+'''
+### Calculate accommodation separately ###
+# Create DataFrame
+rows = []
+for i in range(num_periods):
+    for j in range(num_accommodations):
+        index = i * num_accommodations + j
+        if index < len(values):
+            row = {
+                'Time': time_labels[list(time_labels.keys())[i]],
+                'Region': region_label,
+                'Accommodation Type': accommodation_labels[list(accommodation_labels.keys())[j]],
+                'Country of Residence': country_label,
+                'Value': values[index]
+            }
+            rows.append(row)
+
+df = pd.DataFrame(rows)
+
+'''
 # Create a dictionary to store the summed values for each month
 summed_values = {time_labels[key]: 0 for key in time_labels.keys()}
 
